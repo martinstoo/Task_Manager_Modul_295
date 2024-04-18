@@ -1,8 +1,9 @@
-package ch.stoyanov.martin.task_manager;
+package ch.stoyanov.martin.task_manager.taskmanager;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
@@ -25,18 +26,22 @@ public class Task {
     @Column(nullable = false)
     private String assignedBy;
     
+    @Column(nullable = true)
     private String description;
-    
-
-
 
     public Task() {
     }
 
-    public Task(String title, String assignee, String assignedBy, String description) {
+    public Task(Long id, String title) {
+        this.id = id;
         this.title = title;
-        this.assignee = assignee;
-        this.assignedBy = assignedBy;
-        this.description = description;
     }
+
+    // public Task(Long id, String title, String assignee, String assignedBy, String description) {
+    //     this.id = id;
+    //     this.title = title;
+    //     this.assignee = assignee;
+    //     this.assignedBy = assignedBy;
+    //     this.description = description;
+    // }
 }

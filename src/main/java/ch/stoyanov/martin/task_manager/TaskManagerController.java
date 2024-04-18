@@ -6,14 +6,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
 
+
+@RestController
 public class TaskManagerController {
+
     @GetMapping("/")
-    public ResponseEntity <Task> name(
+    public ResponseEntity <TaskManager> title(
             @RequestParam (value="title", defaultValue ="World")String title) {
         
-                Task hello = new Task("Test", "aed", "asd", "asddsa");
-        return new ResponseEntity<>(hello, HttpStatus.OK);
-    }       
+        TaskManager taskmanager = new TaskManager(title, 17);
+        return new ResponseEntity<>(taskmanager, HttpStatus.OK);
+    }
+    
 }

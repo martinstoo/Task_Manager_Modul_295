@@ -7,12 +7,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+
 public class TaskManagerController {
     @GetMapping("/")
-    public ResponseEntity <TaskManager> name(
-            @RequestParam (value="name", defaultValue ="World")String name) {
+    public ResponseEntity <Task> name(
+            @RequestParam (value="title", defaultValue ="World")String title) {
         
-                TaskManager hello = new TaskManager(name, "Stoyanov", 17);
+                Task hello = new Task("Test", "aed", "asd", "asddsa");
         return new ResponseEntity<>(hello, HttpStatus.OK);
     }       
 }

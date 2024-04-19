@@ -14,7 +14,7 @@ public class People {
 
     @Id
     @GeneratedValue
-    private Long id;
+    private Long people_id;
 
     @Column(nullable = false)
     @Size(max = 255)
@@ -29,14 +29,13 @@ public class People {
     private String lastName;
 
     @Column(nullable = false)
-    @Size(max = 3)
     private Number age;
 
     public People() {
     }
 
-    public People(Long id, String username, String firstName, String lastName, Number age) {
-        this.id = id;
+    public People(Long people_id, String username, String firstName, String lastName, Number age) {
+        this.people_id = people_id;
         this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;

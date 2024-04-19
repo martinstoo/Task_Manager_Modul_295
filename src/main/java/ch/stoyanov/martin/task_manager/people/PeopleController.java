@@ -33,9 +33,9 @@ public class PeopleController {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
-    @GetMapping("api/people/{id}")
-    public ResponseEntity<People> one(@PathVariable Long id) {
-        People people = peopleService.getPeople(id);
+    @GetMapping("api/people/{people_id}")
+    public ResponseEntity<People> one(@PathVariable Long people_id) {
+        People people = peopleService.getPeople(people_id);
         return new ResponseEntity<>(people, HttpStatus.OK);
     }
     
@@ -46,15 +46,15 @@ public class PeopleController {
         return new ResponseEntity<>(savedPeople, HttpStatus.OK);
     }
 
-    @PutMapping("api/people/{id}")
-    public ResponseEntity<People> updatePeople(@Valid @RequestBody @NonNull People people, @PathVariable @NonNull Long id) {
-        People savedPeople = peopleService.updatePeople(people, id);
+    @PutMapping("api/people/{people_id}")
+    public ResponseEntity<People> updatePeople(@Valid @RequestBody @NonNull People people, @PathVariable @NonNull Long people_id) {
+        People savedPeople = peopleService.updatePeople(people, people_id);
         return new ResponseEntity<>(savedPeople, HttpStatus.OK);
     }
 
-    @DeleteMapping("api/people/{id}")
-    public void deletePeople(@PathVariable @NonNull Long id) {
-        peopleService.deletePeople(id);
+    @DeleteMapping("api/people/{people_id}")
+    public void deletePeople(@PathVariable @NonNull Long people_id) {
+        peopleService.deletePeople(people_id);
     }
 
 }

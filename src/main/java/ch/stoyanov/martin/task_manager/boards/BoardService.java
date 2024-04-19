@@ -19,17 +19,17 @@ public class BoardService {
         return repository.findByOrderByTitleAsc();
     }
 
-    public Board getBoard(Long id) {
-        return repository.findById(id)
-        .orElseThrow(() -> new EntityNotFoundException(id, Board.class));
+    public Board getBoard(Long board_id) {
+        return repository.findById(board_id)
+        .orElseThrow(() -> new EntityNotFoundException(board_id, Board.class));
     }
 
     public Board insertBoard(Board board) {
         return repository.save(board);
     }
 
-    public Board updateBoard(Board board, Long id) {
-        return repository.findById(id)
+    public Board updateBoard(Board board, Long board_id) {
+        return repository.findById(board_id)
             .map(boardOrig -> {
                 boardOrig.setTitle(boardOrig.getTitle());
                 return repository.save(boardOrig);
@@ -37,8 +37,8 @@ public class BoardService {
             .orElseGet (() -> repository.save(board));
     }
 
-    public void deleteBoard(Long id) {
-        repository.deleteById(id);
+    public void deleteBoard(Long board_id) {
+        repository.deleteById(board_id);
     }
 
 }

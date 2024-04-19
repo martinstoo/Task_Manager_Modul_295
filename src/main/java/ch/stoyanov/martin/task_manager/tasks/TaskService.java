@@ -19,17 +19,17 @@ public class TaskService {
         return repository.findByOrderByTitleAsc();
     }
 
-    public Task getTask(Long id) {
-        return repository.findById(id)
-        .orElseThrow(() -> new EntityNotFoundException(id, Task.class));
+    public Task getTask(Long task_id) {
+        return repository.findById(task_id)
+        .orElseThrow(() -> new EntityNotFoundException(task_id, Task.class));
     }
 
     public Task insertTask(Task task) {
         return repository.save(task);
     }
 
-    public Task updateTask(Task task, Long id) {
-        return repository.findById(id)
+    public Task updateTask(Task task, Long task_id) {
+        return repository.findById(task_id)
             .map(taskOrig -> {
                 taskOrig.setTitle(taskOrig.getTitle());
                 return repository.save(taskOrig);
@@ -37,8 +37,8 @@ public class TaskService {
             .orElseGet (() -> repository.save(task));
     }
 
-    public void deleteTask(Long id) {
-        repository.deleteById(id);
+    public void deleteTask(Long task_id) {
+        repository.deleteById(task_id);
     }
 
 }

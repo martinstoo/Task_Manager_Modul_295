@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PeopleRepository extends JpaRepository<People, Long> {
-    List<People> findByOrderByTitleAsc();
+    List<People> findByOrderByUsernameAsc();
 }

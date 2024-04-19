@@ -27,9 +27,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.client.RestTemplate;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+
 
 import ch.stoyanov.martin.task_manager.people.People;
 import ch.stoyanov.martin.task_manager.people.PeopleRepository;
+
 
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
@@ -63,6 +66,50 @@ class RestControllerTests {
                 .andExpect(content().string(containsString("username1")));
     }
 
+    @Test
+    @Order(2)
+    void testPostPeoples() throws Exception {
+        String accessToken = obtainAccessToken();
+        String requestBody = "{\"username\": \"username2\", \"firstName\": \"First\", \"lastName\": \"Last\", \"age\": 30}";
+        
+        api.perform(post("/api/people")
+                    .header("Authorization", "Bearer " + accessToken)
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(requestBody)
+                    .with(csrf()))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString("username2")));
+    }
+
+    @Test
+    @Order(3)
+    void testPutPeoples() throws Exception {
+
+        String accessToken = obtainAccessToken();
+        String requestBody = "{\"id\": 1, \"username\": \"updatedUsername\", \"firstName\": \"Updated\", \"lastName\": \"Name\", \"age\": 40}";
+        
+        api.perform(put("/api/people/1")
+                    .header("Authorization", "Bearer " + accessToken)
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(requestBody)
+                    .with(csrf()))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString("updatedUsername")));
+        }
+    
+        @Test
+        @Order(4)
+        void testDeletePeople() throws Exception {
+            String accessToken = obtainAccessToken();
+            
+            api.perform(delete("/api/people/1")
+                        .header("Authorization", "Bearer " + accessToken)
+                        .with(csrf()))
+                    .andDo(print())
+                    .andExpect(status().isOk());
+        }
 
     private String obtainAccessToken() {
         RestTemplate rest = new RestTemplate();

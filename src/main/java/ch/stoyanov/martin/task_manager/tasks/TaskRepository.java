@@ -1,4 +1,4 @@
-package ch.stoyanov.martin.task_manager.taskmanager;
+package ch.stoyanov.martin.task_manager.tasks;
 
 
 import java.util.List;

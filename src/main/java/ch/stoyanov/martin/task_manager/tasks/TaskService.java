@@ -1,6 +1,8 @@
-package ch.stoyanov.martin.task_manager.taskmanager;
+package ch.stoyanov.martin.task_manager.tasks;
 
 import org.springframework.stereotype.Service;
+
+import ch.stoyanov.martin.task_manager.EntityNotFoundException;
 
 import java.util.List;
 
